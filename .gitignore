@@ -1,0 +1,7 @@
+node_modules
+.envrc
+flake.nix
+flake.lock
+.drienv
+backend/.env
+frontend/.env
