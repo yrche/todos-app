@@ -7,6 +7,7 @@ RUN npm install
 
 COPY tsconfig.json ./
 COPY drizzle.config.ts ./
+COPY drizzle ./drizzle
 COPY src ./src
 
 EXPOSE 3001
