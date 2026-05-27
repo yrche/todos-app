@@ -7,6 +7,7 @@ import env from "@config/config.env.js";
 import { errorMiddleware } from "@gateways/middlewares/error.middleware.js";
 import todosRouter from "@gateways/routers/todos.router.js";
 import categoriesRouter from "@gateways/routers/categories.router.js";
+import { initializeDatabase } from "@infrastructure/database/database.bootstrap.js";
 
 const app = express();
 
@@ -24,6 +25,8 @@ async function main() {
       }),
     );
     app.use(express.json());
+
+    await initializeDatabase();
 
     app.use("/todos", todosRouter);
     app.use("/categories", categoriesRouter);

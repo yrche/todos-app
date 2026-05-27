@@ -1,10 +1,14 @@
 import { eq } from "drizzle-orm";
 import { db } from "../database.providers.js";
-import { categories } from "../schemas/index.js";
+import { categories, defaultCategories } from "../schemas/index.js";
 
 export class CategoriesRepository {
   async findAll() {
     return db.select().from(categories).orderBy(categories.name);
+  }
+
+  async ensureDefaults() {
+    await db.insert(categories).values(defaultCategories).onConflictDoNothing();
   }
 
   async findById(id: string) {
